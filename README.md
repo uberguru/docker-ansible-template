@@ -10,10 +10,13 @@ role created via ansible-galaxy init template-role
 You can create as many roles as your need but remember if building MSA (micro service architecture avoid making moniliths)
 
 build the container with 
-
+'''
   ./build-docker-image docker-ansible-template latest
+'''
 
 this translates
- 
+''' 
   ./build-docker-image $IMAGE_NAME $VERSION
+'''
+
 
