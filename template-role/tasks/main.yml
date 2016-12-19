@@ -1,0 +1,5 @@
+---
+# tasks file for template-role
+
+- name: echo somethine 
+  shell: echo "add the rest of your playbook steps....{{example_variable}}" 
