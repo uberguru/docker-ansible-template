@@ -12,7 +12,7 @@ role created via ansible-galaxy init template-role
 - update playbook.yml with your role name
 - update Dockerfile file with your role details 
 
-You can create as many roles as your need but remember if building MSA (micro service architecture avoid making moniliths)
+You can create as many roles as your need but remember if building MSA (micro service architecture avoid making monaliths)
 
 build the container with 
 ```
