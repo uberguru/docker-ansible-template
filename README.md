@@ -1,5 +1,18 @@
 ## Template for Runing ansible role inside of docker container 
 
+
+### pre-requisites
+
+On your system install 
+
+- ansible 
+- docker
+- travis gem 
+
+this varies from distro to distro so just search https://duckduckgo.com 
+
+### Guide
+
 role created via ansible-galaxy init template-role
 
 - Delete the template role 
