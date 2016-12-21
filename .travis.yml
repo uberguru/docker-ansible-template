@@ -13,13 +13,14 @@ env:
   - secure: dd7HFasJJBMLVFPjzgPhxcOCPXmaEBD551+jJxRNmlsIvM/Z8G/A5CG1pY+Ji9ziIj93+WMlukVU+aF7F/5jQQj9r+d4J/CBR8G5t0/+3MDd7qeyhWk7D10zgWnm8szKgC1ZWwZfd1MfDk0jjUnc9hmCMQ2C2zh5Of7NNcjBii+B3Ls+qH5scHoEPx5dQULpiQCve1MOP3qI2VR3C6oTaaIqPwA6gcdREXIcnbBHqVrlGfdjMwONg1J49cSdZHAQbi8tbypUNTGmD58NPL6S88VVOgKqD4UyD3Dl/+t5D8HmgaFO/UH5TygvssoFHM8edSJvykvT8pGJqKWMezl/K/B+A8BFjKBJL2BW9eN0R7T+LkzPWsE7dfH4umebeP51YBpUcxdLwTUNYZknSl3BdhvbJ3DW4r7AM/GvnZn8i/BD6p7iC8nJGdt/2e08YdEfcQ5UMJi0B/XN6QXmQ8M8pHwfvvfqSoP/kkX48jKQ/1TjuxzEOsHnvdjtC4s0iNeUnIyoH0GBHLumnnSRCkX4D1NswuX6kJHfF6kZ7tCNup1OcaiFJKFXG/xwhOztKU5p11Duizbj5X19AoJfb5dHFzxBy7PELzCHoHrwdYn7NNEfyvU0gL0JgA+aYB9//bGgqbMq0+24a4TwxFopyExq7zpDhiKp0ac7IP3RP15YNO0=
   - secure: BO0MIgMSi+wXRFbXFBB4113CxV2llHDNm2srPVGij7EREQ81OHg97EKgcqhzZDrgwwk8IesRp+PYrnH4IO7QT6D0b0APvDCzigSFOQoGaT7dzAyc/3ZdLulOJgRCZecTh0iRqj3xw3RXTGWB4UyYl41uaIo1Kdd6+QrUkI2dlqjvtsHvFs2+J9kSbEm++GYFMB3XjIr7uFdos+BvqEcD5EC7mhkx//7XHgrXaRvEKPNkyt21z9PjU9Jk/vn6I1pBmVbRbjFT5Obb3x1Z0aeG454NeWUaWK6DSOz518LGWfvAyr3zF688Zk4X/j8tbnpVq05zzBfOMb113z7jB1q/+xh4Zeh/5FS/kFXd0vm6yzUf0r8wvroDDbq7H+wwbQSq3Durkx0RqkJHlGF3fCP1Ug0cdVwp+b+5XE2PW5Clyp+uw1LqkIxAZozWTvkVx84ai1+zMAxDoklcyK5eeJhEiSO7LQOchU4xeHICj98o+F7fl8FMPEVDg/nzUMipkJKv0mDiNfGaM6ejP7ovl56gMeBDQHItuBXpNitM9od/1eJfwTVVFhPH8Xl4FZOOZsjcJehldf8C6HwfwesXqftMV4qGIqizn8kDenUyo0Q4/Th31mqivIEkifiKZOy+IHmIYb2qGruYbRTVHKSXPHxZrimlRANQEI+ThoNW3lh6kbk=
   - secure: dxvux+WeOEbhgNNM8AZEeqsMK7sGo0bU+0K5WZqbxsI9Vm+AFhP0XrhRVhwJTYKKwsGR+FIphLvmY/5U+D+aay+IjiXCHKqZvG7kJYJfXAFAThPiXjT8T3XicgFUnfHdibMRGSYHr0eUOOYOqN+SI7KajoZKtnpqcsZhraBUsFdWgq2tlRjxA13MLLPEKXBAFN7iiGzkw/x8YzYL1KeuURD3bbjwOoHkp74+w1+cthrGcXXW4jwBLTjAUQSt09cTXmOIFHvb7JQXhrz1ekW9BmCS6irddDW2mXHV0P56Y1kNaH6dYo8C76T8f2RWakqhR4fTr2IpC9YAp5BITlDmm2O0Bphl66u4TrsEIODJEDWisuj81fjmGiFRN7nstAkM2k25i4i3g7BtnW9x4JbLrZBz8Q7BcPjYq6efhUvx8ygYvZ5IE4j40S3Fyto5a+N9kSa5ao3XHwyUSOZE6byvi2uvIH8VcPqhvHCkAap5nfRk9qpN7kbuNHDs2LxeUIaaGvu93t8KUZvpY2IMIdFf5+tc2F0RbIOpsMrd/GBB08mkM4dHOfuyPjVqNvDgAFN+yNjXVHSdRlqCqvCk1UnWSwBXDRX9+rx+9n4hqRtdYkAa5waGEKtJUY6PZtUaxtQPebVioYjiveIUFleEUY/ES9Zphzq2l6eR+2gaF7o0JJ0=
+  - COMMIT=${TRAVIS_COMMIT::8}
 
 after_success:
   - CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build main.go
   - docker login -u $DOCKER_USER -p $DOCKER_PASS
   - export REPO=uberguru/docker-ansible-template
-  #- export TAG=`if [ "$TRAVIS_BRANCH" == "master" ]; then echo "latest"; else echo $TRAVIS_BRANCH ; fi`
-  - export TAG="$TRAVIS_BRANCH"
+  - export TAG=`if [ "$TRAVIS_BRANCH" == "master" ]; then echo "latest"; else echo $TRAVIS_BRANCH ; fi`
+  #- export TAG="$TRAVIS_BRANCH"
   - docker build -f Dockerfile -t "$REPO:$COMMIT" .
   - docker tag $REPO:$COMMIT $REPO:$TAG
   - docker tag $REPO:$COMMIT $REPO:travis-$TRAVIS_BUILD_NUMBER
