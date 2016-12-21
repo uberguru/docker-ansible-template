@@ -74,6 +74,22 @@ travis encrypt $DOCKER_PASS=DOCKERHUBPASSWORD --add
 
 thats it! 
 
+the final built image should appear in dockerhub 
 
+![Alt text](images/dockerhub.png?raw=true "dockerhub")
+
+
+### if this all looks like klingon 
+
+Then perhaps today is a good day to die after all .... or then I suggest reading 
+
+####Docker
+
+https://docs.docker.com/engine/getstarted/step_four/
+https://www.digitalocean.com/community/tutorials/docker-explained-using-dockerfiles-to-automate-building-of-images
+
+####Ansible
+
+http://docs.ansible.com/ansible/intro.html
 
 
